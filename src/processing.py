@@ -13,5 +13,5 @@ def filter_by_state(catalogue: Union[list], state: Union[str] = "EXECUTED") -> l
 
 def sort_by_date(catalogue: Union[list], revers: Union[bool] = True) -> list:
     """Возвращаеь словари отсортированные по датам"""
-    sorted_list = sorted(catalogue, key=lambda x: x['date'], reverse=revers)
+    sorted_list = sorted(catalogue, key=lambda x: x["date"], reverse=revers)
     return sorted_list
