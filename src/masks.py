@@ -11,5 +11,5 @@ def get_mask_card_number(card: Union[int, str]) -> str:
 def get_mask_account(account: Union[int, str]) -> str:
     """Создаём маску счёта"""
     account = str(account)
-    account_mask = "**" + account[-4:-1]
+    account_mask = "**" + account[-4:]
     return account_mask
