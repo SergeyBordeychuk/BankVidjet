@@ -1,0 +1,2 @@
+INFO:root:Name function: summ
+INFO:root:ok

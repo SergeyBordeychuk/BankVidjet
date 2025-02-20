@@ -4,25 +4,30 @@ from functools import wraps
 
 def log(filename=None):
     def my_decorator(func):
-        '''Выводит логи функции с названием'''
+        """Выводит логи функции с названием"""
+
         @wraps(func)
         def wrapper(*args, **kwargs):
+            global result_func
             if filename != None:
-                logging.basicConfig(level=logging.INFO, filename=filename, filemode="w")
+                logging.basicConfig(level=logging.INFO, filename=filename, filemode="a")
                 logging.info(f"Name function: {str(func)[10:-23]}")
                 try:
                     func(*args, **kwargs)
-                    logging.info(f"ok")
+                    return logging.info(f"ok")
                 except Exception as e:
-                    logging.error(f"error: {e}.")
+                    return logging.error(f"error: {e}. Inputs: {args} {kwargs}")
             else:
-                result = ''
-                result += f'Name func: {str(func)[10:-23]}\n'
+                result = ""
+                result += f"Name func: {str(func)[10:-23]}\n"
                 try:
-                    func(*args, **kwargs)
+                    result_func = func(*args, **kwargs)
                     result += f"ok"
                 except Exception as e:
-                    result += f"error: {e}. Inputs: {args}"
-                return print(result)
+                    result += f"error: {e}. Inputs: {args} {kwargs}"
+                print(result)
+                return result_func
+
         return wrapper
+
     return my_decorator
