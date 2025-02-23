@@ -1,12 +1,17 @@
 import json
-import os
 
 
-def transaction_list(filename: str) -> list:
-    relative_path = f"data/{filename}"
-    absolute_path = os.path.abspath(relative_path)
-    with open(absolute_path) as f:
-        data = json.load(f)
-    if data:
-        return data
-    return []
+def transaction_list(path: str) -> list:
+    try:
+        with open(path, encoding="utf-8") as file_in:
+            try:
+                data = json.load(file_in)
+                if not isinstance(data, list):
+                    return []
+            except json.JSONDecodeError:
+                print("Ошибка декодирования файла")
+    except FileNotFoundError:
+        return []
+    except OSError:
+        return []
+    return data
