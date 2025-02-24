@@ -8,6 +8,7 @@ API_KEY = os.getenv("API_KEY")
 
 
 def amount_transition(transition: dict) -> float:
+    """Фукция обрабатывает транзакцию и возвращает её сумму в рублях"""
     code = transition["operationAmount"]["currency"]["code"]
     if code == "RUS":
         return transition["operationAmount"]["amount"]
