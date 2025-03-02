@@ -14,7 +14,8 @@ def reader_csv(path: str) -> list:
         return file_result
 
 
-def reader_excel(path: str) -> DataFrame:
+def reader_excel(path: str):
     """Функция считывает финансовые операции excel файлов"""
     excel_file = pd.read_excel(path)
-    return excel_file
+    list_excel = excel_file.to_dict(orient='records')
+    return list_excel
