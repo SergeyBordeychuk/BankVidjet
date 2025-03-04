@@ -43,7 +43,7 @@ def main():
 
         second_message_user = input('Необходимый статус: ').upper()
 
-        if second_message_user == ("EXECUTED" or "CANCELED" or "PENDING"):
+        if (second_message_user == "EXECUTED") or (second_message_user =="CANCELED") or (second_message_user == "PENDING"):
             print(f'Операции отфильтрованы по статусу "{second_message_user}"')
             sorted_operations_by_state = filter_by_state(operations, second_message_user)
             break
