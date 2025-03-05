@@ -1,7 +1,4 @@
-﻿import time
-from time import sleep
-
-from src.external_api import amount_transition
+﻿from src.external_api import amount_transition
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.reader_csv_excel import reader_csv, reader_excel
@@ -43,7 +40,7 @@ def main():
 
         second_message_user = input('Необходимый статус: ').upper()
 
-        if (second_message_user == "EXECUTED") or (second_message_user =="CANCELED") or (second_message_user == "PENDING"):
+        if second_message_user in {"EXECUTED", "CANCELED", "PENDING"}:
             print(f'Операции отфильтрованы по статусу "{second_message_user}"')
             sorted_operations_by_state = filter_by_state(operations, second_message_user)
             break
@@ -80,7 +77,7 @@ def main():
         new_operations = search_operations(new_operations, word)
 
     print('Распечатываю итоговый список транзакций...')
-    time.sleep(3)
+
     if len(new_operations) != 0:
         print(f'Всего банковских операций в выборке: {len(new_operations)}')
         for operations in new_operations:
