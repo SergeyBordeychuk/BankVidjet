@@ -85,21 +85,24 @@ def main():
                 second_card = get_mask_account(operations['to'])
             else:
                 second_card = get_mask_card_number(operations['to'])
-            if operations['from'][:4] == 'Счет':
-                first_card = get_mask_account(operations['from'])
-            else:
-                first_card = get_mask_card_number(operations['from'])
             date_fu = operations['date']
             date = f'{date_fu[8:10]}.{date_fu[5:7]}.{date_fu[:4]}'
-            if operations['descritpion'] == 'Открытие влада':
+            if operations['description'] == 'Открытие вклада':
                 print(f'''\n{date} Открытие вклада
-                {second_card}
-                Сумма: {operations['operationAmount']['amount']} {operations['operationAmount']['currency']['name']}
+{second_card}
+Сумма: {operations['operationAmount']['amount']} {operations['operationAmount']['currency']['name']}
                 ''')
+            if operations.get("from") != None:
+                if operations.get("from")[:4] == 'Счет':
+                    first_card = get_mask_account(operations['from'])
+                else:
+                    first_card = get_mask_card_number(operations['from'])
             else:
-                print(f'''\n{date} {operations['descreption']}
-                            {first_card} -> {second_card}
-                            Сумма: {operations['operationAmount']['amount']} {operations['operationAmount']['currency']['name']}
+                first_card = ''
+            if operations['description'] != 'Открытие вклада':
+                print(f'''\n{date} {operations['description']}
+{first_card} -> {second_card}
+Сумма: {operations['operationAmount']['amount']} {operations['operationAmount']['currency']['name']}
                 ''')
     else:
         print('Не найдено ни одной транзакции, подходящей под ваши условия фильтрации')
