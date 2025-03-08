@@ -10,7 +10,7 @@ def log(filename=None):
         def wrapper(*args, **kwargs):
             if filename != None:
                 logging.basicConfig(level=logging.INFO, filename=filename, filemode="a")
-                logging.info(f"Name function: {str(func)[10:-23]}")
+                logging.info(f"Name function: {func.__name__}")
                 try:
                     result_func = func(*args, **kwargs)
                     logging.info(f"ok")
@@ -20,7 +20,7 @@ def log(filename=None):
                     return
             else:
                 result = ""
-                result += f"Name func: {str(func)[10:-23]}\n"
+                result += f"Name func: {func.__name__}\n"
                 try:
                     result_func = func(*args, **kwargs)
                     result += f"ok"
