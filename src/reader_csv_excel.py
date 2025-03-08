@@ -1,7 +1,6 @@
 import csv
 
 import pandas as pd
-from pandas.core.interchange.dataframe_protocol import DataFrame
 
 
 def reader_csv(path: str) -> list:
@@ -17,5 +16,5 @@ def reader_csv(path: str) -> list:
 def reader_excel(path: str):
     """Функция считывает финансовые операции excel файлов"""
     excel_file = pd.read_excel(path)
-    list_excel = excel_file.to_dict(orient='records')
-    return list_excel
+    excel_dict = excel_file.to_dict(orient='records')
+    return excel_dict

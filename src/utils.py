@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 
 logger = logging.getLogger("utils")
 logger.setLevel(logging.INFO)
@@ -8,6 +9,8 @@ file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(m
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
+
+os.makedirs('logs', exist_ok=True)
 
 def transaction_list(path: str) -> list:
     """Функция возвращает транзакции из файла"""
